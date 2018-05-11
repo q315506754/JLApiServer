@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/user")
-class LoginController : BaseController() {
+ class LoginController : BaseController() {
     @Autowired
     var userService:UserService? = null
 
