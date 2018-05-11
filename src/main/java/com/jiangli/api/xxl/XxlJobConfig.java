@@ -4,8 +4,11 @@ import com.xxl.job.core.executor.XxlJobExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 
 /**
  * xxl-job config
@@ -13,7 +16,8 @@ import org.springframework.context.annotation.Configuration;
  * @author xuxueli 2017-04-28
  */
 @Configuration
-public class XxlJobConfig {
+@Profile("!test")
+public class XxlJobConfig implements EnvironmentAware{
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
     @Value("${xxl.job.admin.addresses}")
@@ -50,4 +54,8 @@ public class XxlJobConfig {
         return xxlJobExecutor;
     }
 
+    @Override
+    public void setEnvironment(Environment environment) {
+        System.out.println("XxlJobConfig:"+environment);
+    }
 }

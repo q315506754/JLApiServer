@@ -1,19 +1,13 @@
 package com.jiangli.api.mapper;
 
+import com.jiangli.api.BaseTest;
 import com.jiangli.api.model.User;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @author zlikun <zlikun-dev@hotmail.com>
- * @date 2018-01-17 14:15
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class UserMapperTest {
+public class UserMapperTest extends BaseTest{
 
     @Autowired
     private UserMapper userMapper;

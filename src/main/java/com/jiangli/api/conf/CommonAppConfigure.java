@@ -2,15 +2,20 @@ package com.jiangli.api.conf;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import lombok.val;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationHome;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -18,6 +23,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+
+import static com.jiangli.api.conf.KotlinConfigKt.postProcess;
 
 @Configuration
 @MapperScan(basePackages = "com.jiangli.api.mapper", sqlSessionFactoryRef = "sqlSessionFactoryCommon")
@@ -27,12 +36,34 @@ public class CommonAppConfigure {
     @Value("${druid.common.url}")
     String jdbc;
 
+    @Autowired
+    ApplicationConfig applicationConfig;
+
+    @Autowired
+    ConfigurationPropertiesBindingPostProcessor processor;
+
     public CommonAppConfigure() {
         log.debug("CommonAppConfigure");
         log.info("CommonAppConfigure");
         log.warn("CommonAppConfigure");
         log.error("CommonAppConfigure");
         System.out.println("CommonAppConfigure");
+    }
+
+
+    public File getBaseJarPath() {
+        ApplicationHome home = new ApplicationHome(CommonAppConfigure.class);
+        File jarFile = home.getSource();
+
+        //for test env
+        if (jarFile == null) {
+            File target = new File(home.getDir(), "target");
+            if (target.exists()) {
+                return target;
+            }
+
+        }
+        return jarFile.getParentFile();
     }
 
     /**
@@ -48,17 +79,45 @@ public class CommonAppConfigure {
     }
 
     /**
+     * 使用本地配置
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public DataSource dataSourceModified(@Qualifier("dataSourceCommon") DataSource dataSource) {
+        DruidDataSource build = (DruidDataSource) dataSource;
+        System.out.println(getBaseJarPath());
+        System.out.println(applicationConfig);
+
+        log.warn("before:{}",applicationConfig);
+        postProcess(processor,applicationConfig,getBaseJarPath(),"config.properties");
+        log.warn("after:{}",applicationConfig);
+
+        //log.warn("before:{}",dataSource);
+        log.warn("before:{}",build.getUrl());
+        try {
+            BeanUtils.copyProperties(build,applicationConfig);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //log.warn("after:{}",build);
+        log.warn("after:{}",build.getUrl());
+
+        return dataSource;
+    }
+
+    /**
      * 公共数据源事务
      * @return
      */
     @Bean
-    public PlatformTransactionManager transactionManagerCommon(@Qualifier("dataSourceCommon") DataSource dataSource) {
+    public PlatformTransactionManager transactionManagerCommon(@Qualifier("dataSourceModified") DataSource dataSource) {
         PlatformTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
         return transactionManager;
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactoryCommon(@Qualifier("dataSourceCommon") DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactoryCommon(@Qualifier("dataSourceModified") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
