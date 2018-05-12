@@ -50,14 +50,14 @@ public class LoggingAspect {
     public void before(JoinPoint point) {
         //System.out.println("before:"+point);
         // 只有对LoggingAspect类开放DEBUG级别时，才输出前置事件日志，通常用于调试使用
-        if (log.isDebugEnabled()) {
-            Signature signature = point.getSignature();
-            log.debug("AOP_BEFORE: {}#{}(),args={},number={}",
-                    signature.getDeclaringTypeName(),
-                    signature.getName(),
-                    ArrayUtils.getLength(point.getArgs()),
-                    logCounter.incrementAndGet());
-        }
+//        if (log.isDebugEnabled()) {
+//            Signature signature = point.getSignature();
+//            log.debug("AOP_BEFORE: {}#{}(),args={},number={}",
+//                    signature.getDeclaringTypeName(),
+//                    signature.getName(),
+//                    ArrayUtils.getLength(point.getArgs()),
+//                    logCounter.incrementAndGet());
+//        }
     }
 
     /**
@@ -67,13 +67,13 @@ public class LoggingAspect {
     @After("daoAspect() || serviceAspect()")
     public void after(JoinPoint point) {
         //System.out.println("after:"+point);
-        if (log.isDebugEnabled()) {
-            Signature signature = point.getSignature();
-            log.debug("AOP_AFTER: {}#{}(),args={}",
-                    signature.getDeclaringTypeName(),
-                    signature.getName(),
-                    String.valueOf(ArrayUtils.getLength(point.getArgs())));
-        }
+//        if (log.isDebugEnabled()) {
+//            Signature signature = point.getSignature();
+//            log.debug("AOP_AFTER: {}#{}(),args={}",
+//                    signature.getDeclaringTypeName(),
+//                    signature.getName(),
+//                    String.valueOf(ArrayUtils.getLength(point.getArgs())));
+//        }
     }
 
     /**
