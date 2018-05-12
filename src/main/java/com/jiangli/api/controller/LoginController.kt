@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController
      */
     @RequestMapping("/login")
     fun login():String {
-        log.debug("login333...")
+        log.debug("login33443...")
         return "ClientMain Hello333 " + userService!!.queryByUserId(1L)
     }
 }
