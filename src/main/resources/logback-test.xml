@@ -21,10 +21,13 @@
 		<appender-ref ref="STDOUT"/>
 	</logger>
 
+	<!-- sql -->
+	<logger name="com.jiangli.api.mapper" level="OFF" />
+
 	<!-- 业务日志：输出到业务日志文件 -->
 	<logger name="com.jiangli.api" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT"/>
-		<appender-ref ref="SERVICE_LOG_FILE"/>
+		<!--<appender-ref ref="SERVICE_LOG_FILE"/>-->
 	</logger>
 
 	<logger name="org.springframework.boot.autoconfigure" level="ERROR" />

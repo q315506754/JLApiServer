@@ -17,8 +17,11 @@
     <!-- 业务日志：输出到业务日志文件 -->
     <logger name="com.jiangli.api" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="SERVICE_LOG_FILE"/>
+        <!--<appender-ref ref="SERVICE_LOG_FILE"/>-->
     </logger>
+
+    <!-- sql -->
+    <logger name="com.jiangli.api.mapper" level="OFF" />
 
     <!-- 其它日志设定，调整部分包的日志级别，或者直接关闭(OFF) -->
     <logger name="org.springframework.boot.autoconfigure" level="ERROR"/>

@@ -1,5 +1,6 @@
 package com.jiangli.api;
 
+import com.jiangli.jtest.core.StatisticsSpringJunitRunner;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,13 +9,13 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author Jiangli
  * @date 2018/5/11 10:30
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
+@RunWith(StatisticsSpringJunitRunner.class)
 @PropertySource({
         "classpath:test.properties"
 })
