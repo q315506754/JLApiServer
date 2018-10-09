@@ -3,6 +3,7 @@ package com.jiangli.api;
 import com.jiangli.jtest.core.RepeatFixedDuration;
 import org.junit.Test;
 
+import java.util.Base64;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -23,6 +24,12 @@ public class CommonTest extends BaseTest  {
     @Test
     public void test_2() {
         y.incrementAndGet();
+    }
+
+    @Test
+    public void test_base65() {
+        String s = Base64.getEncoder().encodeToString("123456".getBytes());
+        System.out.println(s);
     }
 
 
