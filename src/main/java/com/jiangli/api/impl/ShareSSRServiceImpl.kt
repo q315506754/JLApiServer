@@ -29,8 +29,9 @@ open class ShareSSRServiceImpl : BaseServiceImpl<Any, Any>(), ShareSSRService {
         queryAll.forEach {
             if (it.url!=null) {
                 val fix = "://"
-                val realSSR = "ssr"+fix + it.url.substring(it.url.indexOf(fix)+fix.length)
+                val realSSR = ("ssr"+fix + it.url.substring(it.url.indexOf(fix)+fix.length)).replace("\n","")
                 ret.add(realSSR)
+                log.info("${it.id}-${it.remark}-${realSSR}")
             }
         }
 
