@@ -252,6 +252,12 @@
 			<optional>true</optional>
 		</dependency>
 
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>9.4.0</version>
+        </dependency>
+
 	</dependencies>
 
 	<profiles>
