@@ -43,6 +43,8 @@ import java.util.concurrent.TimeUnit
         ,@org.springframework.web.bind.annotation.RequestBody(required = false)  content:String?
     ): String {
 
+        println("enter redirectJson..$url")
+
         val request = Request
                 .Builder()
                 .url(url)
