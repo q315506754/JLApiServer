@@ -2,20 +2,19 @@ package com.jiangli.api.conf;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import lombok.val;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationHome;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -24,9 +23,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 
-import static com.jiangli.api.conf.KotlinConfigKt.postProcess;
+import static com.jiangli.api.conf.KotlinConfigForSpringBoot2Kt.postProcess;
+
 
 @Configuration
 @MapperScan(basePackages = "com.jiangli.api.mapper", sqlSessionFactoryRef = "sqlSessionFactoryCommon")
@@ -89,19 +88,19 @@ public class CommonAppConfigure {
         System.out.println(getBaseJarPath());
         System.out.println(applicationConfig);
 
-        log.warn("before:{}",applicationConfig);
+        log.warn("before config:{}",applicationConfig);
         postProcess(processor,applicationConfig,getBaseJarPath(),"config.properties");
-        log.warn("after:{}",applicationConfig);
+        log.warn("after config:{}",applicationConfig);
 
         //log.warn("before:{}",dataSource);
-        log.warn("before:{}",build.getUrl());
+        log.warn("before build:{}",build.getUrl());
         try {
-            BeanUtils.copyProperties(build,applicationConfig);
+            BeanUtils.copyProperties(applicationConfig,build);
         } catch (Exception e) {
             e.printStackTrace();
         }
         //log.warn("after:{}",build);
-        log.warn("after:{}",build.getUrl());
+        log.warn("after build:{}",build.getUrl());
 
         return dataSource;
     }
