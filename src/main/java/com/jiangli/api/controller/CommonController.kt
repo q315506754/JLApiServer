@@ -1,11 +1,13 @@
 package com.jiangli.api.controller
 
+import com.jiangli.api.utils.IpAdrressUtil
 import okhttp3.*
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import javax.servlet.http.HttpServletRequest
 
 /**
  *
@@ -60,5 +62,16 @@ import java.util.concurrent.TimeUnit
         }
 
         return "NO_RES_TXT"
+    }
+
+    /**
+     * http://localhost:8010/getIp
+     * curl http://http://118.25.100.74/:8010/getIp
+     */
+    @RequestMapping("/getIp")
+    fun getIp(
+            req:HttpServletRequest
+    ): String {
+        return IpAdrressUtil.getIpAddr(req)
     }
 }
