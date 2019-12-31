@@ -66,7 +66,7 @@ import javax.servlet.http.HttpServletRequest
 
     /**
      * http://localhost:8010/getIp
-     * curl http://http://118.25.100.74/:8010/getIp
+     * curl http://118.25.100.74:8010/getIp
      */
     @RequestMapping("/getIp")
     fun getIp(
