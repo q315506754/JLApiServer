@@ -1,6 +1,8 @@
 package com.jiangli.api.controller
 
+import com.jiangli.api.utils.DiffUtil
 import com.jiangli.api.utils.IpAdrressUtil
+import lombok.extern.slf4j.Slf4j
 import okhttp3.*
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 /**
  *
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletRequest
  * @author Jiangli
  * @date 2018/5/11 11:36
  */
+@Slf4j
 @RestController
 @RequestMapping("/")
  class CommonController : BaseController() {
@@ -73,5 +77,21 @@ import javax.servlet.http.HttpServletRequest
             req:HttpServletRequest
     ): String {
         return IpAdrressUtil.getIpAddr(req)
+    }
+
+    /**
+     http://localhost:8010/diff?oldFile=http://file.g2s.cn/zhs_yanfa_150820/ablecommons/202008/1f698286874c435ab1ba3ee64820987c.ico&newFile=http://image.g2s.cn/zhs_yanfa_150820/ablecommons/202008/7868d5954cac46b4a48210278e2d5f91.png
+    http://118.25.100.74:8010/diff
+     */
+    @RequestMapping("/diff")
+    fun diff(
+            req:HttpServletRequest
+    ,res:HttpServletResponse
+    ,@RequestParam(name="oldFile") oldFile:String
+    ,@RequestParam(name="newFile") newFile:String
+    ): String {
+        val diff = DiffUtil.diff(oldFile, newFile)
+        log.info("查分over")
+        return diff.absolutePath
     }
 }
