@@ -12,7 +12,7 @@
 	</appender>
 
 	<!-- 全局日志：输出到控制台 -->
-	<root level="WARN">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT"/>
 	</root>
 
@@ -30,16 +30,16 @@
 		<!--<appender-ref ref="SERVICE_LOG_FILE"/>-->
 	</logger>
 
-	<logger name="org.springframework.boot.autoconfigure" level="ERROR" />
-	<logger name="org.I0Itec.zkclient" level="ERROR" />
-	<logger name="org.apache.zookeeper" level="ERROR" />
-	<logger name="com.alibaba.druid" level="ERROR" />
-	<logger name="com.alibaba.dubbo.registry" level="ERROR" />
-	<logger name="com.alibaba.dubbo.rpc" level="ERROR" />
-	<logger name="com.alibaba.dubbo.config" level="ERROR" />
-	<logger name="com.alibaba.dubbo.common" level="ERROR" />
-	<logger name="com.alibaba.dubbo.remoting.transport" level="ERROR" />
-	<logger name="org.springframework.beans" level="ERROR" />
-	<logger name="org.springframework.context" level="ERROR" />
+<!--	<logger name="org.springframework.boot.autoconfigure" level="ERROR" />-->
+<!--	<logger name="org.I0Itec.zkclient" level="ERROR" />-->
+<!--	<logger name="org.apache.zookeeper" level="ERROR" />-->
+<!--	<logger name="com.alibaba.druid" level="ERROR" />-->
+<!--	<logger name="com.alibaba.dubbo.registry" level="ERROR" />-->
+<!--	<logger name="com.alibaba.dubbo.rpc" level="ERROR" />-->
+<!--	<logger name="com.alibaba.dubbo.config" level="ERROR" />-->
+<!--	<logger name="com.alibaba.dubbo.common" level="ERROR" />-->
+<!--	<logger name="com.alibaba.dubbo.remoting.transport" level="ERROR" />-->
+<!--	<logger name="org.springframework.beans" level="ERROR" />-->
+<!--	<logger name="org.springframework.context" level="ERROR" />-->
 
 </configuration>

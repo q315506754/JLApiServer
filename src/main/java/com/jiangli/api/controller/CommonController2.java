@@ -20,8 +20,8 @@ import java.net.URLDecoder;
 @RequestMapping("/common")
 public class CommonController2 extends BaseController{
     /**
-     http://localhost:8010/diff?oldFile=http://file.g2s.cn/zhs_yanfa_150820/ablecommons/202008/1f698286874c435ab1ba3ee64820987c.ico&newFile=http://image.g2s.cn/zhs_yanfa_150820/ablecommons/202008/7868d5954cac46b4a48210278e2d5f91.png
-     http://118.25.100.74:8010/diff?oldFile=http://file.g2s.cn/zhs_yanfa_150820/ablecommons/202008/1f698286874c435ab1ba3ee64820987c.ico&newFile=http://image.g2s.cn/zhs_yanfa_150820/ablecommons/202008/7868d5954cac46b4a48210278e2d5f91.png
+     http://localhost:8010/common/diff?oldFile=http://file.g2s.cn/zhs_yanfa_150820/ablecommons/202008/1f698286874c435ab1ba3ee64820987c.ico&newFile=http://image.g2s.cn/zhs_yanfa_150820/ablecommons/202008/7868d5954cac46b4a48210278e2d5f91.png
+     http://118.25.100.74:8010/common/diff?oldFile=http://file.g2s.cn/zhs_yanfa_150820/ablecommons/202008/1f698286874c435ab1ba3ee64820987c.ico&newFile=http://image.g2s.cn/zhs_yanfa_150820/ablecommons/202008/7868d5954cac46b4a48210278e2d5f91.png
      */
     @RequestMapping("/diff")
     public void diff(

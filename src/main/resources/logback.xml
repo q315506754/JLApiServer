@@ -5,7 +5,7 @@
     <include resource="appender.xml"/>
 
     <!-- 全局日志：输出到控制台 -->
-    <root level="WARN">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 
@@ -24,16 +24,16 @@
     <logger name="com.jiangli.api.mapper" level="OFF" />
 
     <!-- 其它日志设定，调整部分包的日志级别，或者直接关闭(OFF) -->
-    <logger name="org.springframework.boot.autoconfigure" level="ERROR"/>
-    <logger name="org.I0Itec.zkclient" level="ERROR"/>
-    <logger name="org.apache.zookeeper" level="ERROR"/>
-    <logger name="com.alibaba.druid" level="ERROR"/>
-    <logger name="com.alibaba.dubbo.registry" level="ERROR"/>
-    <logger name="com.alibaba.dubbo.rpc" level="ERROR"/>
-    <logger name="com.alibaba.dubbo.config" level="ERROR"/>
-    <logger name="com.alibaba.dubbo.common" level="ERROR"/>
-    <logger name="com.alibaba.dubbo.remoting.transport" level="ERROR"/>
-    <logger name="org.springframework.beans" level="ERROR"/>
-    <logger name="org.springframework.context" level="ERROR"/>
+<!--    <logger name="org.springframework.boot.autoconfigure" level="ERROR"/>-->
+<!--    <logger name="org.I0Itec.zkclient" level="ERROR"/>-->
+<!--    <logger name="org.apache.zookeeper" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.druid" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.dubbo.registry" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.dubbo.rpc" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.dubbo.config" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.dubbo.common" level="ERROR"/>-->
+<!--    <logger name="com.alibaba.dubbo.remoting.transport" level="ERROR"/>-->
+<!--    <logger name="org.springframework.beans" level="ERROR"/>-->
+<!--    <logger name="org.springframework.context" level="ERROR"/>-->
 
 </configuration>
